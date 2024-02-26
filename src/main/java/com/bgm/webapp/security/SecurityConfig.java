@@ -27,7 +27,8 @@ public class SecurityConfig {
     http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(
-            authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer.requestMatchers("/").permitAll()
+            authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer.requestMatchers("/", "/home", "/error")
+                .permitAll()
                 .anyRequest().authenticated())
         .authenticationProvider(daoAuthenticationProvider())
         .formLogin(formLoginCostomizer -> formLoginCostomizer.permitAll());
