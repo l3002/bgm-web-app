@@ -29,10 +29,9 @@ public class Category {
   private Long categoryID;
   private String categoryName;
   private String description;
-  private static final String DEFAULT_IMG_DIR_PATH = ""; // TODO: create default directory path for all the categories
-  private Integer numberOfItem;
+  public static final String DEFAULT_IMG_DIR_PATH = ""; // TODO: create default directory path for all the categories
   private String imageDirPath;
   @OneToMany
   private Set<Product> products;
-
+  private Integer numberOfProducts;
 }
