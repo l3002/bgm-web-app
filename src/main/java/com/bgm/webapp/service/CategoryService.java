@@ -6,8 +6,8 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import com.bgm.webapp.data.category.Category;
-import com.bgm.webapp.data.category.CategoryRepository;
 import com.bgm.webapp.data.product.Product;
+import com.bgm.webapp.repository.CategoryRepository;
 
 import lombok.AllArgsConstructor;
 

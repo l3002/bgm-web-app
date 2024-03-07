@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.bgm.webapp.data.product.Product;
-import com.bgm.webapp.data.product.ProductRepository;
+import com.bgm.webapp.repository.ProductRepository;
 
 import lombok.AllArgsConstructor;
 
