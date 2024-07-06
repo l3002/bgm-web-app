@@ -1,9 +1,12 @@
 package com.bgm.webapp.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.bgm.webapp.data.product.Product;
@@ -20,66 +23,37 @@ public class ProductService {
 
   private final ProductRepository productRepository;
 
-  public Product findProductWithName(String productName) {
-
-    Optional<Product> product = productRepository.findByProductName(productName);
-
-    return product.orElseThrow();
+  public List<Product> getAllProducts() {
+    return productRepository.findAll();
   }
 
-  public Product uploadProduct(Product product) {
+  public ResponseEntity<?> getProductByID(Long productID) {
 
-    return productRepository.save(product);
+    Optional<Product> product = productRepository.findById(productID);
 
+    return product.map(response -> ResponseEntity.ok().body(response))
+        .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
-  public Product updateProductName(String productName, String newProductName) {
+  public ResponseEntity<Product> saveProduct(Product product) throws URISyntaxException {
 
-    Product updatedProduct = productRepository.findByProductName(productName).orElseThrow();
+    Product newProduct = productRepository.save(product);
 
-    updatedProduct.setProductName(newProductName);
-
-    return productRepository.save(updatedProduct);
-
+    return ResponseEntity.created(new URI("/product/" + newProduct.getProductID())).body(newProduct);
   }
 
-  public Product updateProductDescription(String productName, String newDescription) {
+  public ResponseEntity<Product> updateProduct(Product product) {
 
-    Product updatedProduct = productRepository.findByProductName(productName).orElsethrow();
+    Product updatedProduct = productRepository.save(product);
 
-    updatedProduct.setDescription(newDescription);
-
-    return productRepository.save(updatedProduct);
-  }
-
-  public Product updateProductDetails(String productName, Map<String, String> newDetails) {
-
-    Product updatedProduct = productRepository.findByProductName(productName).orElseThrow();
-
-    updatedProduct.setDetails(newDetails);
-
-    return productRepository.save(updatedProduct);
+    return ResponseEntity.ok().body(updatedProduct);
 
   }
 
-  public Product addNewPropertyToDetail(String productName, String property, String value) {
+  public ResponseEntity<?> deleteProduct(Long ProductID) {
 
-    Product updatedProduct = productRepository.findByProductName(productName).orElseThrow();
+    productRepository.deleteById(ProductID);
 
-    Map<String, String> newDetails = new HashMap<String, String>();
-
-    newDetails.putAll(updatedProduct.getDetails());
-
-    newDetails.put(property, value);
-
-    updatedProduct.setDetails(newDetails);
-
-    return updatedProduct;
+    return ResponseEntity.ok().build();
   }
-
-  // TODO Add Implementation for below method.
-  public Product updatePropertyInDetails(String productName, String property, String value) {
-    return null;
-  }
-
 }
