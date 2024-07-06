@@ -12,10 +12,10 @@
 	<artifactId>web-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>web-app</name>
-	<description>Web Application for BGM Enterprises</description>
+  <description>Web Application for BGM Enterprises</description>
 	<properties>
-		<java.version>17</java.version>
-	</properties>
+    <java.version>17</java.version>
+  </properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -29,10 +29,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -52,7 +48,23 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-jose</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-resource-server</artifactId>
+    </dependency>
 	</dependencies>
 
 	<build>
@@ -68,7 +80,7 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
+      </plugin>
 		</plugins>
 	</build>
 
